@@ -1,0 +1,62 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.pasword-validation{
+    display: flex;
+    border: 10px solid rgb(128, 59, 59);
+    justify-content: center;
+    flex-direction:column ;
+    align-content: center;
+    /* background-color: aqua; */
+    margin: 30px;
+    padding: 100px;
+    align-items: center;
+    background-color: #e6a3a3;
+    flex-wrap: wrap;
+    
+}
+
+
+.display-validation{
+    /* width: 100px; */
+    align-self: center;
+    margin-top: 50px;
+    justify-content: space-between;
+    /* box-sizing: rem; */
+    flex-direction: column;
+    display: none;
+    border: .3rem solid rgb(66, 79, 8);
+    align-content: space-between;
+}
+.input-form{
+    margin-top: 30px;
+    align-content: space-between;
+}
+#passwordInput{
+    margin-top: 30px;
+    border-radius: 1.7rem solid rgb(230, 109, 109);
+    text-align: center;
+    border-width: .3rem;
+    font-size: 1rem;
+
+}
+#userInput{
+    border-radius: 1.7rem solid rgb(230, 109, 109);
+    text-align: center;
+    border-width: .3rem;
+    font-size: 1rem;
+}
+.display-validation li::marker{
+    color:red;
+    font-size: 20;
+}
+.label-text{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    /* border-radius: 1rem; */
+    
+}
+
