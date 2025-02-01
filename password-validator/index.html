@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>password-Validator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <script defer src="./validation.js"></script>
+
+        <div class="pasword-validation">
+            <h1>Password Validator</h1>
+
+            <div class="input-form">
+                <label for="userInput">Username: </label>
+                <input type="text" placeholder="Enter your username"
+                    id="userInput">
+                <br>
+                <label for="passwordInput">Password: </label>
+                <input type="text" placeholder="Enter your password"
+                    id="passwordInput">
+
+            </div>
+
+            <div class="display-validation">
+                <ul>
+                    <li class="label-text" id="Numeric">
+                        contains Numric
+                    </li>
+
+                    <li class="label-text" id="UpperCase">
+                        contains UpperCase
+                    </li>
+
+                    <li class="label-text" id="LowerCase">
+                        contains LowerCase
+                    </li>
+
+                    <li class="label-text" id="Special-Character">
+                        contains Special-Character
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </body>
+</html>
