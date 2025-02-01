@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>APIs</title>
+    </head>
+
+    <body>
+
+        <label for="title" id="t">Title</label>
+        <input type="text" id="title">
+        <button id="submit">submit</button>
+        <br>
+        <!--
+        <label for="year">year</label>
+        <input type="text" id="year">
+        <br>
+        <label for="Rating">Rated</label>
+        <input type="text" id="Rate">
+        <br>
+        <label for="RunTime">Runtime</label>
+        <input type="text" id="RunTime"> -->
+
+        <div class="container" id="contener">
+
+        </div>
+
+        <script>
+
+        const container = document.getElementById('contener');
+        const title = document.getElementById('title');
+        const year = document.getElementById('year');
+        const Rating = document.getElementById('Rate');
+        const Runtime = document.getElementById('RunTime');
+        const submitBtn = document.getElementById('submit');
+        let Tvalue;
+        let url;
+        let options;
+        submitBtn.addEventListener("click", function () {
+
+            Tvalue = title.value;
+            console.log(Tvalue);
+
+            // url = `https://erp.phidesigns.in/api/resource/Product`;
+            // options = {
+            //     method: 'GET',
+            //     headers: {
+            //         accept: 'application/json',
+            //         // Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTgyNzhiNThhZmRmNGNmMzkyNzM4ZDE5ZWZmMTM1NSIsIm5iZiI6MTczNzQ2NDgxNy41MDgsInN1YiI6IjY3OGY5YmYxZTFhZjIwNTkwZmFhYmFmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VmOdY8vY1Q5VclnqmxaCrQrHoXA7pIB9XvjKmCIC74E'
+            //         Authorization : 'token 64261af6a6ba8fb:129cc48deb5104b'
+            //     }
+            // };
+
+            fetchdata1().then(function (data) {
+                console.log(data);
+                console.log(data.results);
+                data.results.forEach(function(element){
+
+                    const div = document.createElement('div');
+
+                    const title1 = document.createElement('label');
+                    const year1 = document.createElement('label');
+                    const RunTime1 = document.createElement('label');
+                    const image = document.createElement('img');
+
+                    image.src = element.id;
+                    title1.innerText = element.popularity;
+                    year1.innerText = element.original_title;
+                    RunTime1.innerText = element.Runtime;
+
+                    div.appendChild(title1);
+                    div.appendChild(year1);
+                    div.appendChild(RunTime1);
+                    div.appendChild(image);
+                    container.appendChild(div);
+
+                });
+            }).catch(function (err) {
+                //Note:- It is important to always pass the parameter in the .catch handler otherwise it will always give the error 
+                console.log(err);
+            });
+        })
+
+
+
+
+        async function fetchdata() {
+
+            try {
+                const response = await fetch(url, options);
+                result = await response.json();
+                console.log(result);
+                result.forEach(element => {
+                    console.log(element);
+                });
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        // fetchdata();
+
+
+
+        function fetchdata1() {
+            //always write resolve before rejcct in the promise contructor
+            const promise = new Promise(function (resolve, reject) {
+                fetch(url, options)
+                    .then(response => response.json())
+                    .then(function (response) {
+                        resolve(response);
+
+                    }).catch(function () {
+                        const err = new Error("don't know");
+                        reject(err);
+                    })
+            });
+            return promise;
+        }
+
+
+
+    </script>
+    </body>
+
+</html>
