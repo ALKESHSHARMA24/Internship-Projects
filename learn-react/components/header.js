@@ -2,9 +2,12 @@ import { Button } from "@mui/material";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = function (props) {
   const { UserName } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items); //subscribing to the store using selectors
+  console.log(cartItems);
   // console.log(UserName);
   // console.log(UserContext);
   return (
@@ -29,7 +32,7 @@ const Header = function (props) {
             <Link to={{ pathname: "/ContactUs" }}>Contact Us</Link>
           </li>
           <li>
-            <Link>Cart</Link>
+            <Link to={{ pathname: "/Cart" }}>Cart{cartItems.length}</Link>
           </li>
           <li>
             <button className=" bg-emerald-400 rounded-lg ">Login</button>

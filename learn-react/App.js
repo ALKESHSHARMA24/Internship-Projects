@@ -15,6 +15,9 @@ import { UserContext } from "./utils/UserContext.js";
 // import LazyComponent from "./components/LazyComponent";
 import { UserContext } from "./utils/UserContext.js";
 import { useContext } from "react";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+import ShowCartItems from "./components/ShowCartItem.js";
 
 //Lazy Loading component which will only be used when it required
 const LazyComponent = lazy(() => import("./components/LazyComponent.js"));
@@ -28,14 +31,16 @@ const AppLayout = () => {
     setLoginUser("alkesh");
   }, []);
   return (
-    // BINDED THE CONTEXT API OBJECT VALUE TO THE USE STATE HOOKS SO THAT THE USERNAME VALUE  OF THE CONTEXT CAN BE CHANGE USING THE SETSTATE AND THEN APPLAYOUT WILL BE RE RENDERS
-    <UserContext.Provider value={{ UserName: LoginUser, setLoginUser }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-        {/* this will be <Outlet /> replaced by the child route of AppLayout based on the child routes will be used*/}
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      {/* // BINDED THE CONTEXT API OBJECT VALUE TO THE USE STATE HOOKS SO THAT THE USERNAME VALUE  OF THE CONTEXT CAN BE CHANGE USING THE SETSTATE AND THEN APPLAYOUT WILL BE RE RENDERS */}
+      <UserContext.Provider value={{ UserName: LoginUser, setLoginUser }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+          {/* this will be <Outlet /> replaced by the child route of AppLayout based on the child routes will be used*/}
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -68,6 +73,10 @@ const appRouter = createBrowserRouter([
             <LazyComponent />
           </Suspense>
         ),
+      },
+      {
+        path: "/Cart",
+        element: <ShowCartItems />,
       },
       {
         path: "/Restaurant/:resId",
