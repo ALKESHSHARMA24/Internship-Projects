@@ -28,9 +28,7 @@ const ItemsAccrodian = function (props) {
               // isActive={isActive}
             />
           ))}
-        
       </div>
-      
     </div>
   );
 };
